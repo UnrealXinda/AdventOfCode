@@ -2,7 +2,6 @@
 #include <fstream>
 #include <limits>
 #include <assert.h>
-#include <vector>
 #include <algorithm>
 
 #include "Day5.h"
@@ -55,21 +54,24 @@ void Day5::SolutionPartTwo(const std::string& inputFilePath)
 	const auto kRowCount = 1 << kRowStrLength;
 	const auto kRowSeatCount = 1 << (kSeatStrLength - kRowStrLength);
 	auto input = std::ifstream(inputFilePath);
-	auto seats = std::vector<bool>(kRowCount * kRowSeatCount, false);
+	auto min_idx = std::numeric_limits<int>::max();
+	auto max_idx = std::numeric_limits<int>::min();
+	auto count = 0;
+	auto sum = 0;
 
-	for (std::string line; std::getline(input, line); )
+	for (std::string line; std::getline(input, line); ++count)
 	{
 		assert(line.length() == kSeatStrLength);
 		auto rowNum = BinarySearch(line.cbegin(), line.cbegin() + kRowStrLength, 'F', 'B');
 		auto colNum = BinarySearch(line.cbegin() + kRowStrLength, line.cend(), 'L', 'R');
-		seats[rowNum * kRowSeatCount + colNum] = true;
+		auto idx = rowNum * kRowSeatCount + colNum;
+		min_idx = std::min(min_idx, idx);
+		max_idx = std::max(max_idx, idx);
+		sum += idx;
 	}
 
-	auto first = std::find(seats.cbegin(), seats.cend(), true);
-	auto last = std::find(seats.crbegin(), seats.crend(), true).base();
-	auto missing = std::find(first, last, false);
-	auto index = std::distance(seats.cbegin(), missing);
+	auto missing_idx = (max_idx + min_idx) * (count + 1) / 2 - sum;
 
-	std::cout << "Missing seat ID is: " << index << std::endl;
+	std::cout << "Missing seat ID is: " << missing_idx << std::endl;
 }
 

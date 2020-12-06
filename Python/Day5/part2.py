@@ -26,7 +26,8 @@ def main():
     input_file = sys.argv[1]
     min_idx = sys.maxsize
     max_idx = -1
-    seats = [False for i in range(0, ROW_COUNT * COL_COUNT)]
+    sum = 0
+    count = 0
     
     with open(input_file) as fp:
         for raw_line in fp:
@@ -36,9 +37,10 @@ def main():
             idx = row * COL_COUNT + col
             min_idx = min(min_idx, idx)
             max_idx = max(max_idx, idx)
-            seats[idx] = True
+            sum += idx
+            count += 1
 
-    missing_idx = next(idx for idx in range(min_idx, max_idx + 1) if not seats[idx])
+    missing_idx = (max_idx + min_idx) * (count + 1) / 2 - sum;
     print("Missing seat ID is: %d" % missing_idx)
     
 
