@@ -5,6 +5,7 @@
 #include "Day4.h"
 #include "Day5.h"
 #include "Day6.h"
+#include "Day7.h"
 
 int main()
 {
@@ -55,4 +56,12 @@ int main()
 	std::cout << "***********" << std::endl;
 	std::cout << "Day 6 Part Two: " << std::endl;
 	Day6::SolutionPartTwo("Inputs/Day6.txt");
+
+	std::cout << "***********" << std::endl;
+	std::cout << "Day 7 Part One: " << std::endl;
+	Day7::SolutionPartOne("Inputs/Day7.txt");
+
+	std::cout << "***********" << std::endl;
+	std::cout << "Day 7 Part Two: " << std::endl;
+	Day7::SolutionPartTwo("Inputs/Day7.txt");
 }
