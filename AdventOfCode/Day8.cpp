@@ -24,28 +24,23 @@ namespace
 		Instruction(const std::string& str);
 	};
 
-	class Program
+	struct Program
 	{
-	public:
 		Program(const std::string& programFile);
-		void ExecuteNoLoop(Accumulator& accumulator, InstructionCounter& counter);
-		void ExecuteBreakOnLast(Accumulator& accumulator, InstructionCounter& counter);
 		std::vector<Instruction> instructions;
-
-	private:
-		void ExecuteInstruction(const Instruction& instruction, Accumulator& accumulator, InstructionCounter& counter);
 	};
 
 	class VirtualMachine
 	{
 	public:
-		void ExecuteProgram(Program& program, int startInstructionIndex = 0);
-		inline auto InspectAccumulator() const -> Accumulator { return accumulator; }
-		inline auto InspectInstructionCounter() const -> InstructionCounter { return counter; }
+		void ExecuteProgram(const Program& program, int startInstructionIndex = 0);
+		inline auto InspectAccumulator() const -> Accumulator { return m_accumulator; }
+		inline auto InspectInstructionCounter() const -> InstructionCounter { return m_counter; }
 
 	private:
-		Accumulator accumulator;
-		InstructionCounter counter;
+		void ExecuteInstruction(const Instruction& instruction);
+		Accumulator m_accumulator;
+		InstructionCounter m_counter;
 	};
 
 	Instruction::Instruction(const std::string& str)
@@ -84,44 +79,40 @@ namespace
 		}
 	}
 
-	void Program::ExecuteNoLoop(Accumulator& accumulator, InstructionCounter& counter)
+	void VirtualMachine::ExecuteProgram(const Program& program, int startInstructionIndex /*= 0*/)
 	{
 		auto executedIndices = std::unordered_set<int>();
-		auto index = counter;
+		const auto& instructions = program.instructions;
+		m_accumulator = 0;
+		m_counter = startInstructionIndex;
 
-		while (executedIndices.find(counter) == executedIndices.end()
-			&& counter >= 0 && counter < instructions.size())
+		while (executedIndices.find(m_counter) == executedIndices.end()
+			&& m_counter >= 0 && m_counter < instructions.size())
 		{
-			executedIndices.insert(counter);
-			ExecuteInstruction(instructions[counter], accumulator, counter);
+			executedIndices.insert(m_counter);
+			ExecuteInstruction(instructions[m_counter]);
 		}
 	}
 
-	void Program::ExecuteInstruction(const Instruction& instruction, Accumulator& accumulator, InstructionCounter& counter)
+	void VirtualMachine::ExecuteInstruction(const Instruction& instruction)
 	{
 		assert(instruction.type != Instruction::Type::NONE);
 
 		switch (instruction.type)
 		{
 		case Instruction::Type::NOP:
-			++counter;
+			++m_counter;
 			break;
 		case Instruction::Type::ACC:
-			++counter;
-			accumulator += instruction.value;
+			++m_counter;
+			m_accumulator += instruction.value;
 			break;
 		case Instruction::Type::JMP:
-			counter += instruction.value;
+			m_counter += instruction.value;
 			break;
 		}
 	}
 
-	void VirtualMachine::ExecuteProgram(Program& program, int startInstructionIndex /*= 0*/)
-	{
-		accumulator = 0;
-		counter = startInstructionIndex;
-		program.ExecuteNoLoop(accumulator, counter);
-	}
 }
 
 void Day8::SolutionPartOne(const std::string& inputFilePath)
