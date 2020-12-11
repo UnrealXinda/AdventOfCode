@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include <regex>
 #include <unordered_map>
 #include <algorithm>
 #include <assert.h>
