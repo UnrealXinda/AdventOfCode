@@ -67,8 +67,8 @@ namespace
 void Day15::SolutionPartOne(const std::string& inputFilePath)
 {
 	auto input = std::ifstream(inputFilePath);
-	auto game = ElvesNumberGame<unsigned int>();
 	auto nums = std::vector<unsigned int>();
+	auto game = ElvesNumberGame<unsigned int>();
 
 	for (auto numStr = std::string(); std::getline(input, numStr, ','); )
 	{
@@ -82,8 +82,8 @@ void Day15::SolutionPartOne(const std::string& inputFilePath)
 void Day15::SolutionPartTwo(const std::string& inputFilePath)
 {
 	auto input = std::ifstream(inputFilePath);
-	auto game = ElvesNumberGame<unsigned long long>();
 	auto nums = std::vector<unsigned long long>();
+	auto game = ElvesNumberGame<unsigned long long>();
 
 	for (auto numStr = std::string(); std::getline(input, numStr, ','); )
 	{
