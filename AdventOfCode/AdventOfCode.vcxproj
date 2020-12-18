@@ -135,6 +135,7 @@
     <Text Include="Inputs\Day14.txt" />
     <Text Include="Inputs\Day15.txt" />
     <Text Include="Inputs\Day16.txt" />
+    <Text Include="Inputs\Day17.txt" />
     <Text Include="Inputs\Day2.txt" />
     <Text Include="Inputs\Day3.txt" />
     <Text Include="Inputs\Day4.txt" />
@@ -153,6 +154,7 @@
     <ClInclude Include="Day14.h" />
     <ClInclude Include="Day15.h" />
     <ClInclude Include="Day16.h" />
+    <ClInclude Include="Day17.h" />
     <ClInclude Include="Day2.h" />
     <ClInclude Include="Day3.h" />
     <ClInclude Include="Day4.h" />
@@ -171,6 +173,8 @@
     <ClCompile Include="Day14.cpp" />
     <ClCompile Include="Day15.cpp" />
     <ClCompile Include="Day16.cpp" />
+    <ClCompile Include="Day17.cpp" />
+    <ClCompile Include="Day17_Alternative.cpp" />
     <ClCompile Include="Day2.cpp" />
     <ClCompile Include="Day3.cpp" />
     <ClCompile Include="Day4.cpp" />
