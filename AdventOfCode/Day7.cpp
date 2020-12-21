@@ -87,7 +87,7 @@ namespace
 		return count;
 	}
 
-	void DFS(const WeightedGraph& graph, const std::string& curType, int& count, int multiplier)
+	void DfsSolver(const WeightedGraph& graph, const std::string& curType, int& count, int multiplier)
 	{
 		if (graph.find(curType) != graph.end())
 		{
@@ -95,7 +95,7 @@ namespace
 
 			for (const auto& kvp : children)
 			{
-				DFS(graph, kvp.first, count, multiplier * kvp.second);
+				DfsSolver(graph, kvp.first, count, multiplier * kvp.second);
 				count += multiplier * kvp.second;
 			}
 		}
@@ -105,7 +105,7 @@ namespace
 	{
 		auto count = 0;
 		auto multiplier = 1;
-		DFS(graph, bagType, count, multiplier);
+		DfsSolver(graph, bagType, count, multiplier);
 
 		return count;
 	}	
