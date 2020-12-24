@@ -20,6 +20,7 @@
 #include "Day20.h"
 #include "Day21.h"
 #include "Day22.h"
+#include "Day23.h"
 
 int main()
 {
@@ -190,4 +191,12 @@ int main()
 
 	std::cout << "Day 22 Part Two: " << std::endl;
 	Day22::SolutionPartTwo("Inputs/Day22.txt");
+
+	std::cout << "***********" << std::endl;
+	std::cout << "Day 23 Part One: " << std::endl;
+	Day23::SolutionPartOne("Inputs/Day23.txt");
+	std::cout << "-----------" << std::endl;
+
+	std::cout << "Day 23 Part Two: " << std::endl;
+	Day23::SolutionPartTwo("Inputs/Day23.txt");
 }

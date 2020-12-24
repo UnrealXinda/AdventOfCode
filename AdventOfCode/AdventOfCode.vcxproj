@@ -164,6 +164,7 @@
     <ClInclude Include="Day20.h" />
     <ClInclude Include="Day21.h" />
     <ClInclude Include="Day22.h" />
+    <ClInclude Include="Day23.h" />
     <ClInclude Include="Day3.h" />
     <ClInclude Include="Day4.h" />
     <ClInclude Include="Day5.h" />
@@ -188,6 +189,7 @@
     <ClCompile Include="Day20.cpp" />
     <ClCompile Include="Day21.cpp" />
     <ClCompile Include="Day22.cpp" />
+    <ClCompile Include="Day23.cpp" />
     <ClCompile Include="Day3.cpp" />
     <ClCompile Include="Day4.cpp" />
     <ClCompile Include="Day5.cpp" />
