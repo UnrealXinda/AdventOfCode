@@ -124,7 +124,7 @@ namespace
 	}
 }
 
-void Day23::SolutionPartOne(const std::string& inputFilePath)
+void Day23::SolutionPartOne()
 {
 	constexpr auto kNeighborCount = 3;
 	constexpr auto kRounds = 100;
@@ -147,7 +147,7 @@ void Day23::SolutionPartOne(const std::string& inputFilePath)
 	std::cout << num << std::endl;
 }
 
-void Day23::SolutionPartTwo(const std::string& inputFilePath)
+void Day23::SolutionPartTwo()
 {
 	constexpr auto kNeighborCount = 3;
 	constexpr auto kRounds = 10000000;
